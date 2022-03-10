@@ -2,6 +2,8 @@ package my.service;
 
 import my.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import my.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>
