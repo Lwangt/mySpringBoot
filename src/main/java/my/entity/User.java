@@ -17,7 +17,7 @@ import lombok.Setter;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-08
+ * @since 2022-03-10
  */
 @Getter
 @Setter
@@ -51,6 +51,9 @@ public class User implements Serializable {
 
     @TableField("fan_account")
     private Long fanAccount;
+
+    @TableField("user_img")
+    private String userImg;
 
 
 }

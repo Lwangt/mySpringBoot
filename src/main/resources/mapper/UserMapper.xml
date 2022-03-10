@@ -12,6 +12,7 @@
         <result column="sex" property="sex" />
         <result column="follow_account" property="followAccount" />
         <result column="fan_account" property="fanAccount" />
+        <result column="user_img" property="userImg" />
     </resultMap>
 
 </mapper>

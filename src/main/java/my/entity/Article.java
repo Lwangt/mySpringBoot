@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import lombok.Setter;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-08
+ * @since 2022-03-10
  */
 @Getter
 @Setter
@@ -33,6 +34,15 @@ public class Article implements Serializable {
 
     @TableField("title")
     private String title;
+
+    @TableField("author_id")
+    private Long authorId;
+
+    @TableField("create_time")
+    private LocalDateTime createTime;
+
+    @TableField("like_num")
+    private Integer likeNum;
 
 
 }

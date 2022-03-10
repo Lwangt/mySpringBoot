@@ -2,8 +2,6 @@ package my.service;
 
 import my.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import my.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * <p>
@@ -11,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-08
+ * @since 2022-03-10
  */
 public interface UserService extends IService<User> {
 
