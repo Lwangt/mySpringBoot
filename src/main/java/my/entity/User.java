@@ -55,5 +55,12 @@ public class User implements Serializable {
     @TableField("user_img")
     private String userImg;
 
+    @TableField("salt")
+    private String salt;
 
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
 }
