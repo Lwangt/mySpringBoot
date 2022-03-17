@@ -36,7 +36,7 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .maxAge(3600)
                 .allowedMethods("GET","POST","DELETE","PUT")
-                .allowedOrigins("*");
+                .allowedOriginPatterns("*");
         logger.info("====解决跨域问题成功！！！====");
 
     }
