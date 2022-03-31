@@ -22,23 +22,23 @@ public class UserMapperTest {
     @Autowired
     private ArticleMapper articleMapper;
 
-    @Test
-    public void testInsert(){
-        User user = new User();
-        user.setName("cc");
-        user.setPassword("123456");
-        System.out.println(user);
-        int result = this.userMapper.insert(user);
-        System.out.println(result);
-
-    }
-
-    @Test
-    public void articleSelect() {
-        List<Article> articleList = articleMapper.selectList(null);
-        for(Article article:articleList) {
-            System.out.println(article.getContent());
-        }
-    }
+//    @Test
+//    public void testInsert(){
+//        User user = new User();
+//        user.setName("cc");
+//        user.setPassword("123456");
+//        System.out.println(user);
+//        int result = this.userMapper.insert(user);
+//        System.out.println(result);
+//
+//    }
+//
+//    @Test
+//    public void articleSelect() {
+//        List<Article> articleList = articleMapper.selectList(null);
+//        for(Article article:articleList) {
+//            System.out.println(article.getContent());
+//        }
+//    }
 
 }
