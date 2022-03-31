@@ -2,14 +2,19 @@ package my.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import my.entity.Article;
 import my.entity.User;
+import my.mapper.UserMapper;
 import my.service.UserService;
 import my.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -26,6 +31,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMapper userMapper;
+
+
+    @RequestMapping("/index")
+    public String index() {
+        return "Hello World! 欢迎来到 spring boot application";
+    }
+
+
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     */
     @PostMapping("/login")
     @ResponseBody
     public OutputObject login(@RequestBody User user){
@@ -55,9 +75,9 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("/addUser")
+    @PostMapping("/register")
     @ResponseBody
-    public ResultObj addUser(@RequestBody User user) {
+    public ResultObj register(@RequestBody User user) {
         try {
             // 查询用户名是否存在
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -81,10 +101,46 @@ public class UserController {
             return ResultObj.ADD_ERROR;
         }
     }
-    @RequestMapping("/index")
-    public String index() {
-        return "Hello World! 欢迎来到 spring boot application";
+
+
+    /**
+     * 添加用户信息
+     * @param user
+     * @return
+     */
+    @RequestMapping(path = "/addUser", method = RequestMethod.POST)
+        public void addUser(@RequestBody User user) {
+        System.out.println(user);
+        int result = userMapper.insert(user);
+        System.out.println(result);
     }
+
+    /**
+     * 获取全部用户
+     * @param
+     * @return
+     */
+    @GetMapping("/getUserList")
+    public void getUserList(){
+        List<User> userList = userMapper.selectList(null);
+        for(User user:userList) {
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * 查询用户信息
+     * @param idList
+     * @return
+     */
+    @RequestMapping(path = "/getUserListById/{idList}", method = RequestMethod.POST)
+    public void getUserListById(@RequestBody Object idList){
+        List<User> userList = userMapper.selectBatchIds((Collection<? extends Serializable>) idList);
+        for(User user:userList) {
+            System.out.println(user);
+        }
+    }
+
 
 
 }

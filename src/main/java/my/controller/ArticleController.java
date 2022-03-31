@@ -3,8 +3,6 @@ package my.controller;
 
 import my.entity.Article;
 import my.mapper.ArticleMapper;
-import my.service.ArticleService;
-import my.utils.ResultObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

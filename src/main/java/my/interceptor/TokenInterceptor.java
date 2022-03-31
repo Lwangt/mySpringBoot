@@ -1,7 +1,5 @@
 package my.interceptor;
 
-import my.utils.TokenUtil;
-
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

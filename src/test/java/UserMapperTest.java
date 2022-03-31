@@ -1,17 +1,14 @@
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import my.Application;
 import my.entity.Article;
 import my.entity.User;
 import my.mapper.ArticleMapper;
 import my.mapper.UserMapper;
-import my.utils.ResultObj;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
