@@ -66,12 +66,13 @@ public class UserController {
     @PostMapping("/addUser")
     public AjaxResult addUser(@Validated @RequestBody User user) {
 
-        userMapper.insert(user);
-        System.out.println("=======");
-        System.out.println(user);
-
-        AjaxResult ajax = AjaxResult.success();
-        return ajax;
+       int x = userMapper.insert(user);
+       System.out.println("x = "+x);
+       if(x!=0) {
+           AjaxResult ajax = AjaxResult.success();
+           return ajax;
+       }
+       else return null;
     }
 
 }
