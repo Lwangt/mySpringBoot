@@ -20,4 +20,5 @@ public interface UserService extends IService<User> {
      * @return 用户对象信息
      */
     User selectUserWithPwdByUserName(String name);
+
 }

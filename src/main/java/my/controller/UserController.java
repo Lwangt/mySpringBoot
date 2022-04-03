@@ -51,6 +51,9 @@ public class UserController {
             User user = userService.selectUserWithPwdByUserName(loginVo.getName());
         Assert.notNull(user,"用户不存在");
         if(!loginVo.getPassword().equals(DESUtils.decrypt(user.getPassword()))){
+            System.out.println("loginVo.getPassword ============= "+loginVo.getPassword());
+            System.out.println("user.getPassword ============= "+user.getPassword());
+            System.out.println("加密后的user.getPassword ============= "+DESUtils.decrypt(user.getPassword()));
             //密码不同则抛出异常
             return AjaxResult.error("密码不正确");
         }
@@ -60,5 +63,15 @@ public class UserController {
         return ajax;
     }
 
+    @PostMapping("/addUser")
+    public AjaxResult addUser(@Validated @RequestBody User user) {
+
+        userMapper.insert(user);
+        System.out.println("=======");
+        System.out.println(user);
+
+        AjaxResult ajax = AjaxResult.success();
+        return ajax;
+    }
 
 }

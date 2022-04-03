@@ -3,7 +3,7 @@
 <mapper namespace="my.mapper.UserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="my.entity.User">
+    <resultMap id="userResult" type="my.entity.User">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="password" property="password" />
@@ -14,5 +14,10 @@
         <result column="fan_account" property="fanAccount" />
         <result column="user_img" property="userImg" />
     </resultMap>
+
+    <!--public User selectUserByName(String name);/*通过用户名查询用户*/-->
+    <select id="selectUserByName" resultMap="userResult" parameterType="String">
+        SELECT * FROM USER WHERE NAME = #{name}
+    </select>
 
 </mapper>
