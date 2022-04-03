@@ -72,7 +72,10 @@ public class UserController {
            AjaxResult ajax = AjaxResult.success();
            return ajax;
        }
-       else return null;
+       else {
+           AjaxResult ajax = AjaxResult.error();
+           return ajax;
+       }
     }
 
 }
