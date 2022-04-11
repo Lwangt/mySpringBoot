@@ -36,10 +36,6 @@ public class UserController {
 
     public static final String TOKEN = "token";
 
-    @RequestMapping("/index")
-    public String index() {
-        return "Hello World! 欢迎来到 spring boot application";
-    }
 
     /**
      * 登录方法
@@ -76,6 +72,21 @@ public class UserController {
            AjaxResult ajax = AjaxResult.error();
            return ajax;
        }
+    }
+
+    @PostMapping("/register")
+    public AjaxResult register(@Validated @RequestBody User user) {
+
+        userMapper.insert(user);
+
+        if(true) {
+            AjaxResult ajax = AjaxResult.success();
+            return ajax;
+        }
+        else {
+            AjaxResult ajax = AjaxResult.error();
+            return ajax;
+        }
     }
 
 }
