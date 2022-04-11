@@ -2,6 +2,7 @@ package my.controller;
 
 
 import cn.hutool.core.lang.Assert;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import my.common.utils.AjaxResult;
 import my.common.utils.DESUtils;
 import my.common.utils.TokenUtils;
@@ -12,6 +13,8 @@ import my.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -44,19 +47,24 @@ public class UserController {
      */
     @PostMapping("/login")
     public AjaxResult login(@Validated @RequestBody LoginVo loginVo) {
-            User user = userService.selectUserWithPwdByUserName(loginVo.getName());
-        Assert.notNull(user,"用户不存在");
-        if(!loginVo.getPassword().equals(DESUtils.decrypt(user.getPassword()))){
-            System.out.println("loginVo.getPassword ============= "+loginVo.getPassword());
-            System.out.println("user.getPassword ============= "+user.getPassword());
-            System.out.println("加密后的user.getPassword ============= "+DESUtils.decrypt(user.getPassword()));
-            //密码不同则抛出异常
-            return AjaxResult.error("密码不正确");
+        User user = userService.selectUserWithPwdByUserName(loginVo.getName());
+        if(user == null){
+            return AjaxResult.error("用户不存在");
         }
-        String token = tokenUtils.login(user.getName(), loginVo.getPassword());
-        AjaxResult ajax = AjaxResult.success();
-        ajax.put(TOKEN, token);
-        return ajax;
+        else{
+            Assert.notNull(user,"用户不存在");
+            if(!loginVo.getPassword().equals(DESUtils.decrypt(user.getPassword()))){
+                System.out.println("loginVo.getPassword ============= "+loginVo.getPassword());
+                System.out.println("user.getPassword ============= "+user.getPassword());
+                System.out.println("加密后的user.getPassword ============= "+DESUtils.decrypt(user.getPassword()));
+                //密码不同则抛出异常
+                return AjaxResult.error("密码不正确");
+            }
+            String token = tokenUtils.login(user.getName(), loginVo.getPassword());
+            AjaxResult ajax = AjaxResult.success();
+            ajax.put(TOKEN, token);
+            return ajax;
+        }
     }
 
     @PostMapping("/addUser")
@@ -75,18 +83,24 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public AjaxResult register(@Validated @RequestBody User user) {
+    public AjaxResult register(@Validated @RequestBody LoginVo loginVo) {
 
-        userMapper.insert(user);
-
-        if(true) {
+        User chaxunUsers = userService.selectUserWithPwdByUserName(loginVo.getName());
+        if(chaxunUsers == null){
+            System.out.println("用户名没有重复");
+            User user = new User();
+            user.setName(loginVo.getName());
+            user.setPassword(DESUtils.encrypt(loginVo.getPassword()));
+            userMapper.insert(user);
             AjaxResult ajax = AjaxResult.success();
             return ajax;
         }
-        else {
-            AjaxResult ajax = AjaxResult.error();
+        else{
+            System.out.println("用户名重复");
+            AjaxResult ajax = AjaxResult.error("用户名重复");
             return ajax;
         }
+
     }
 
 }

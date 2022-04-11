@@ -44,5 +44,14 @@ public class Article implements Serializable {
     @TableField("like_num")
     private Integer likeNum;
 
+    @TableField("read_num")
+    private Integer readNum;
+
+    @TableField("comment_num")
+    private Integer commentNum;
+
+    @TableField("miaoshu")
+    private String miaoshu;
+
 
 }
