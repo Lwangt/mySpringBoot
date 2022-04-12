@@ -63,6 +63,7 @@ public class UserController {
             String token = tokenUtils.login(user.getName(), loginVo.getPassword());
             AjaxResult ajax = AjaxResult.success();
             ajax.put(TOKEN, token);
+            ajax.put("userMessage",user);
             return ajax;
         }
     }
