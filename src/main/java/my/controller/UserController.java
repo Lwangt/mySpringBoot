@@ -2,11 +2,10 @@ package my.controller;
 
 
 import cn.hutool.core.lang.Assert;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import my.common.utils.AjaxResult;
 import my.common.utils.DESUtils;
 import my.common.utils.TokenUtils;
-import my.entity.LoginVo;
+import my.vo.LoginVo;
 import my.entity.User;
 import my.mapper.UserMapper;
 import my.service.UserService;
@@ -14,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  * <p>
@@ -54,9 +53,9 @@ public class UserController {
         else{
             Assert.notNull(user,"用户不存在");
             if(!loginVo.getPassword().equals(DESUtils.decrypt(user.getPassword()))){
-                System.out.println("loginVo.getPassword ============= "+loginVo.getPassword());
-                System.out.println("user.getPassword ============= "+user.getPassword());
-                System.out.println("加密后的user.getPassword ============= "+DESUtils.decrypt(user.getPassword()));
+//                System.out.println("loginVo.getPassword ============= "+loginVo.getPassword());
+//                System.out.println("user.getPassword ============= "+user.getPassword());
+//                System.out.println("加密后的user.getPassword ============= "+DESUtils.decrypt(user.getPassword()));
                 //密码不同则抛出异常
                 return AjaxResult.error("密码不正确");
             }
@@ -92,6 +91,7 @@ public class UserController {
             User user = new User();
             user.setName(loginVo.getName());
             user.setPassword(DESUtils.encrypt(loginVo.getPassword()));
+            user.setCreateTime(new Date());
             userMapper.insert(user);
             AjaxResult ajax = AjaxResult.success();
             return ajax;

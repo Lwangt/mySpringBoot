@@ -5,7 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -13,11 +14,11 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author lwangt
- * @since 2022-03-10
+ * @since 2022-04-17
  */
 @Getter
 @Setter
@@ -33,23 +34,26 @@ public class Comment implements Serializable {
     @TableField("parent_id")
     private Long parentId;
 
-    @TableField("creator_id")
-    private Long creatorId;
+    @TableField("article_id")
+    private Long articleId;
+
+    @TableField("content")
+    private String content;
+
+    @TableField("create_time")
+    private Date createTime;
+
+    @TableField("avatar")
+    private String avatar;
+
+    @TableField("nick_name")
+    private String nickName;
 
     @TableField("like_count")
     private Long likeCount;
 
     @TableField("comment_count")
-    private Integer commentCount;
-
-    @TableField("content")
-    private String content;
-
-    @TableField("time")
-    private LocalDateTime time;
-
-    @TableField("article_id")
-    private Long articleId;
+    private Long commentCount;
 
 
 }

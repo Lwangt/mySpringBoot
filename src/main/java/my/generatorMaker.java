@@ -24,7 +24,7 @@ public class generatorMaker {
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/it_forum","root","123456lwt")
                 .globalConfig(builder -> {
                     builder.author("lwangt")               //作者
-                            .outputDir(System.getProperty("user.dir")+"\\src\\main\\java")    //输出路径(写到java目录)
+                            .outputDir(System.getProperty("user.dir")+"\\src\\main\\java\\forGenerator")    //输出路径(写到java目录)
                             .enableSwagger()           //开启swagger
                             .commentDate("yyyy-MM-dd");
 //                            .fileOverride();            //开启覆盖之前生成的文件

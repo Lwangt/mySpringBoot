@@ -1,9 +1,18 @@
 package my.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import my.common.utils.AjaxResult;
+import my.entity.Article;
+import my.entity.Comment;
+import my.entity.User;
+import my.mapper.CommentMapper;
+import my.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +25,47 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
+
+
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private CommentMapper commentMapper;
+
+    @PostMapping("/addComment")
+    public AjaxResult addComment(@Validated @RequestBody Comment comment) {
+
+        comment.setCreateTime(new Date());
+        commentMapper.insert(comment);
+
+        AjaxResult ajax = AjaxResult.success();
+        return ajax;
+    }
+
+    @PostMapping("/deleteComment")
+    public AjaxResult deleteComment(@Validated @RequestBody Comment comment) {
+
+        long deleteId = comment.getId();
+        commentMapper.deleteById(deleteId);
+
+        AjaxResult ajax = AjaxResult.success();
+        return ajax;
+    }
+
+    @PostMapping("/getCommentList")
+    public AjaxResult getCommentList(@Validated @RequestBody Comment comment) {
+        //因为gerArticleId获取不到 所以只能前端传入的参数命名为id，然后后端getID，然后再与article比较
+//        System.out.println("1111111111" + " =  " + comment.getArticleId());
+//        System.out.println("2222222222222" + " =  " + comment.getId());
+        QueryWrapper<Comment> wrapper = new QueryWrapper<>();
+        wrapper.eq("article_id", comment.getId());
+        List<Comment> commentList  = commentMapper.selectList(wrapper);
+
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("data",commentList);
+        return ajax;
+    }
+
 
 }
