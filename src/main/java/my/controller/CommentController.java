@@ -53,11 +53,8 @@ public class CommentController {
         return ajax;
     }
 
-    @PostMapping("/getCommentList")
-    public AjaxResult getCommentList(@Validated @RequestBody Comment comment) {
-        //因为gerArticleId获取不到 所以只能前端传入的参数命名为id，然后后端getID，然后再与article比较
-//        System.out.println("1111111111" + " =  " + comment.getArticleId());
-//        System.out.println("2222222222222" + " =  " + comment.getId());
+    @PostMapping("/getCommentListByArticleId")
+    public AjaxResult getCommentListByArticleId(@Validated @RequestBody Comment comment) {
         QueryWrapper<Comment> wrapper = new QueryWrapper<>();
         wrapper.eq("article_id", comment.getId());
         List<Comment> commentList  = commentMapper.selectList(wrapper);

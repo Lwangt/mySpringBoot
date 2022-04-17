@@ -53,5 +53,8 @@ public class Article implements Serializable {
     @TableField("miaoshu")
     private String miaoshu;
 
+    @TableField("type")
+    private String type;
+
 
 }
