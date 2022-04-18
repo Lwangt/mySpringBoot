@@ -54,8 +54,8 @@ public class ArticleController {
         }
     }
 
-    @PostMapping("/getArticleList")
-    public AjaxResult getArticleList(@Validated @RequestBody Article article) {
+    @PostMapping("/getArticleListByType")
+    public AjaxResult getArticleListByType(@Validated @RequestBody Article article) {
 
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.eq("type", article.getType());

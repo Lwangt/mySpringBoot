@@ -104,4 +104,14 @@ public class UserController {
 
     }
 
+
+    @PostMapping("/getUserNameById")
+    public AjaxResult getUserNameById(@Validated @RequestBody LoginVo loginVo) {
+
+        User user = userMapper.selectById(loginVo.getId());
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("userName",user.getName());
+        return ajax;
+    }
+
 }
