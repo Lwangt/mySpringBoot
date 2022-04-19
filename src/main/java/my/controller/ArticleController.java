@@ -1,16 +1,17 @@
 package my.controller;
 
 
+import com.alibaba.fastjson.*;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import my.common.utils.AjaxResult;
 import my.entity.Article;
 import my.entity.Comment;
 import my.entity.User;
 import my.mapper.ArticleMapper;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spring.web.json.Json;
 
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,11 @@ public class ArticleController {
     @PostMapping("/addArticle")
     public AjaxResult addArticle(@Validated @RequestBody Article article) {
 
+            //fastJson输出
+//            String jsonOutput= JSON.toJSONString(article);
+//            System.out.println(jsonOutput);
+
+            article.setCreateTime(new Date());
             articleMapper.insert(article);
 
             AjaxResult ajax = AjaxResult.success();
