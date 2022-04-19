@@ -1,6 +1,6 @@
 package my.controller;
 
-
+import com.alibaba.fastjson.*;
 import cn.hutool.core.lang.Assert;
 import my.common.utils.AjaxResult;
 import my.common.utils.DESUtils;
@@ -111,6 +111,20 @@ public class UserController {
         User user = userMapper.selectById(loginVo.getId());
         AjaxResult ajax = AjaxResult.success();
         ajax.put("userName",user.getName());
+        return ajax;
+    }
+
+    @PostMapping("/getUserLikeArticleListById")
+    public AjaxResult getUserLikeArticleListById(@Validated @RequestBody LoginVo loginVo) {
+
+        User user = userMapper.selectById(loginVo.getId());
+
+        //fastJson输出
+//        String jsonOutput= JSON.toJSONString(user);
+//        System.out.println(jsonOutput);
+
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("likeArticleList",user.getLikeArticleList());
         return ajax;
     }
 

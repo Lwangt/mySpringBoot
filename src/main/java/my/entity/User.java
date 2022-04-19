@@ -38,9 +38,6 @@ public class User implements Serializable {
     @TableField("password")
     private String password;
 
-    @TableField("avatar_url")
-    private String avatarUrl;
-
     @TableField("create_time")
     private Date createTime;
 
@@ -56,8 +53,8 @@ public class User implements Serializable {
     @TableField("user_img")
     private String userImg;
 
-    @TableField("salt")
-    private String salt;
+    @TableField("like_article_list")
+    private String likeArticleList;
 
 
     public User(String name, String password) {
