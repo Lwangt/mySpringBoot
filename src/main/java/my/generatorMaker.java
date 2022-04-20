@@ -20,6 +20,7 @@ public class generatorMaker {
         tables.add("collect_record");
         tables.add("follow_record");
         tables.add("type");
+        tables.add("user_to_article");
 
         FastAutoGenerator.create("jdbc:mysql://localhost:3306/it_forum","root","123456lwt")
                 .globalConfig(builder -> {
