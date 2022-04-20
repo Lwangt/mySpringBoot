@@ -10,6 +10,10 @@
         <result column="author_id" property="authorId" />
         <result column="create_time" property="createTime" />
         <result column="like_num" property="likeNum" />
+        <result column="read_num" property="readNum" />
+        <result column="comment_num" property="commentNum" />
+        <result column="introduction" property="introduction" />
+        <result column="type" property="type" />
     </resultMap>
 
 </mapper>

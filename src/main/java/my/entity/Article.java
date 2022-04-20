@@ -52,8 +52,8 @@ public class Article implements Serializable {
     @TableField("comment_num")
     private Integer commentNum;
 
-    @TableField("miaoshu")
-    private String miaoshu;
+    @TableField("introduction")
+    private String introduction;
 
     @TableField("type")
     private String type;
