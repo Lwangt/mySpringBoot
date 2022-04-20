@@ -8,6 +8,7 @@ import my.entity.Article;
 import my.entity.Comment;
 import my.entity.User;
 import my.mapper.ArticleMapper;
+import my.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,10 @@ import java.util.Map;
 public class ArticleController {
 
     @Autowired
-    ArticleMapper articleMapper;
+    public ArticleMapper articleMapper;
+
+    @Autowired
+    public ArticleService articleService;
 
     @PostMapping("/addArticle")
     public AjaxResult addArticle(@Validated @RequestBody Article article) {
@@ -69,6 +73,33 @@ public class ArticleController {
 
         AjaxResult ajax = AjaxResult.success();
         ajax.put("data",articletList);
+        return ajax;
+    }
+
+
+    @GetMapping("/getArticleListRandom")
+    public AjaxResult getArticleListRandom() {
+
+        // 总记录数
+        long count = articleService.count();
+        // 随机数起始位置
+        long randomCount =(long) (Math.random()*count);
+        // 数字太大 不够的话 保证能展示最后10个数据
+        if (randomCount > count-10) {
+            randomCount =  count - 10 ;
+        }
+
+        QueryWrapper wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("article_id");
+        wrapper.last("limit "+ String.valueOf(randomCount) +", 10");
+        List<Article> randomList = articleMapper.selectList(wrapper);
+
+        //fastJson输出
+//        String jsonOutput= JSON.toJSONString(randomList);
+//        System.out.println(jsonOutput);
+
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("data",randomList);
         return ajax;
     }
 
