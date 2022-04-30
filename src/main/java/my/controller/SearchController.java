@@ -82,6 +82,7 @@ public class SearchController {
 
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.like("name", user.getName());
+        System.out.println("username === "+user.getName());
         List<User> list  = userMapper.selectList(wrapper);
 
         //fastJson输出

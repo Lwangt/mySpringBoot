@@ -1,6 +1,6 @@
 package my.common.utils;
 
-import lombok.extern.log4j.Log4j;
+//import lombok.extern.log4j.Log4j;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -8,7 +8,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import java.security.SecureRandom;
 
-@Log4j
+//@Log4j
 public final class DESUtils {
 
 
@@ -52,7 +52,7 @@ public final class DESUtils {
             return cipher.doFinal(src);
         }
         catch (Exception e) {
-            log.error(e.getMessage());
+//            log.error(e.getMessage());
         }
         return new byte[0];
     }
@@ -89,7 +89,7 @@ public final class DESUtils {
             return cipher.doFinal(src);
         }
         catch (Exception e) {
-            log.error(e.getMessage());
+//            log.error(e.getMessage());
         }
         return new byte[0];
     }

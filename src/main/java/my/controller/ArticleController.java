@@ -98,6 +98,7 @@ public class ArticleController {
         AjaxResult ajax = AjaxResult.success();
         ajax.put("data",randomList);
         return ajax;
+
     }
 
 
