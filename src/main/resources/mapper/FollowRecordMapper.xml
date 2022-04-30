@@ -4,9 +4,9 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="my.entity.FollowRecord">
-        <id column="record_id" property="recordId" />
-        <result column="article_id" property="articleId" />
-        <result column="user_id" property="userId" />
+        <id column="follow_id" property="followId" />
+        <result column="follower_id" property="followerId" />
+        <result column="be_follow_id" property="beFollowId" />
     </resultMap>
 
 </mapper>

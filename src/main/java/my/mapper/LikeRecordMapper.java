@@ -1,7 +1,7 @@
 package my.mapper;
 
-import my.entity.CollectRecord;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import my.entity.LikeRecord;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -10,9 +10,9 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-10
+ * @since 2022-04-30
  */
 @Mapper
-public interface CollectRecordMapper extends BaseMapper<CollectRecord> {
+public interface LikeRecordMapper extends BaseMapper<LikeRecord> {
 
 }

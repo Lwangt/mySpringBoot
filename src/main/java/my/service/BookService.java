@@ -1,7 +1,7 @@
 package my.service;
 
-import my.entity.CollectRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
+import my.entity.Book;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-10
+ * @since 2022-04-30
  */
-public interface CollectRecordService extends IService<CollectRecord> {
+public interface BookService extends IService<Book> {
 
 }

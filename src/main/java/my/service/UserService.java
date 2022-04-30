@@ -19,6 +19,6 @@ public interface UserService extends IService<User> {
      * @param name 用户名
      * @return 用户对象信息
      */
-    User selectUserWithPwdByUserName(String name);
+//    User selectUserWithPwdByUserName(String name);
 
 }

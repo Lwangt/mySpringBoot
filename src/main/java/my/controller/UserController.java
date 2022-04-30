@@ -2,6 +2,7 @@ package my.controller;
 
 import com.alibaba.fastjson.*;
 import cn.hutool.core.lang.Assert;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import my.common.utils.AjaxResult;
 import my.common.utils.DESUtils;
 import my.common.utils.TokenUtils;
@@ -14,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -46,7 +48,12 @@ public class UserController {
      */
     @PostMapping("/login")
     public AjaxResult login(@Validated @RequestBody LoginVo loginVo) {
-        User user = userService.selectUserWithPwdByUserName(loginVo.getName());
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", loginVo.getName());
+        User user  = userMapper.selectOne(wrapper);
+
+//        User user = userService.selectUserWithPwdByUserName(loginVo.getName());
+
         if(user == null){
             return AjaxResult.error("用户不存在");
         }
@@ -84,8 +91,11 @@ public class UserController {
 
     @PostMapping("/register")
     public AjaxResult register(@Validated @RequestBody LoginVo loginVo) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", loginVo.getName());
+        User chaxunUsers  = userMapper.selectOne(wrapper);
 
-        User chaxunUsers = userService.selectUserWithPwdByUserName(loginVo.getName());
+//        User user = userService.selectUserWithPwdByUserName(loginVo.getName());
         if(chaxunUsers == null){
             System.out.println("用户名没有重复");
             User user = new User();

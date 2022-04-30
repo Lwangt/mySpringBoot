@@ -2,7 +2,6 @@ package my.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -11,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-10
+ * @since 2022-04-30
  */
 @RestController
-@RequestMapping("/type")
-public class TypeController {
+@RequestMapping("/book")
+public class BookController {
 
 }

@@ -1,10 +1,8 @@
 package my.mapper;
 
-import my.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import my.entity.Book;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * <p>
@@ -12,12 +10,9 @@ import java.util.List;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-10
+ * @since 2022-04-30
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
-
-
-//    User selectUserByName(String name);
+public interface BookMapper extends BaseMapper<Book> {
 
 }

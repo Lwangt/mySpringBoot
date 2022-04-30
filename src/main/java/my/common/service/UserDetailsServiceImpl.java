@@ -1,10 +1,12 @@
 package my.common.service;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import my.common.exception.CustomException;
 import my.common.utils.StringCustomUtils;
 
 
 import my.entity.LoginUser;
 import my.entity.User;
+import my.mapper.UserMapper;
 import my.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +30,18 @@ public class UserDetailsServiceImpl implements UserDetailsService
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserMapper userMapper;
+
 
     private static final String LOGIN_FAIL_ERROR_TIP = "账号或密码错误";
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.selectUserWithPwdByUserName(username);
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", username);
+        User user  = userMapper.selectOne(wrapper);
+//        User user = userService.selectUserWithPwdByUserName(username);
         if (StringCustomUtils.isNull(user)) {
             log.info("登录用户：{} 不存在.", username);
             throw new CustomException(LOGIN_FAIL_ERROR_TIP);

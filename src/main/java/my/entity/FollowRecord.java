@@ -25,14 +25,14 @@ public class FollowRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("record_id")
-    private Long recordId;
+    @TableId("follow_id")
+    private Long followId;
 
-    @TableField("article_id")
-    private Long articleId;
+    @TableField("follower_id")
+    private Long followerId;
 
-    @TableField("user_id")
-    private Long userId;
+    @TableField("be_follow_id")
+    private Long beFollowId;
 
 
 }
