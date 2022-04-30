@@ -2,15 +2,14 @@ package my.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import my.common.utils.AjaxResult;
-import my.entity.Article;
 import my.entity.Comment;
-import my.entity.User;
 import my.mapper.CommentMapper;
 import my.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class CommentController {
     @PostMapping("/addComment")
     public AjaxResult addComment(@Validated @RequestBody Comment comment) {
 
-        comment.setCreateTime(new Date());
+        comment.setCreateTime(LocalDate.now());
         commentMapper.insert(comment);
 
         AjaxResult ajax = AjaxResult.success();

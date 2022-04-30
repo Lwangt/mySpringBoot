@@ -1,10 +1,8 @@
 package my.mapper;
 
-import my.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import my.entity.User;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * <p>

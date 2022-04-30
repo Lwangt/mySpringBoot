@@ -1,16 +1,16 @@
 package my.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -18,7 +18,7 @@ import lombok.Setter;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-10
+ * @since 2022-04-30
  */
 @Getter
 @Setter
@@ -28,7 +28,7 @@ public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("article_id")
+    @TableId(value = "article_id", type = IdType.AUTO)
     private Long articleId;
 
     @TableField("content")
@@ -41,7 +41,7 @@ public class Article implements Serializable {
     private Long authorId;
 
     @TableField("create_time")
-    private Date createTime;
+    private LocalDate createTime;
 
     @TableField("like_num")
     private Integer likeNum;
@@ -55,6 +55,7 @@ public class Article implements Serializable {
     @TableField("introduction")
     private String introduction;
 
+    @ApiModelProperty("\"js\" \"back\" \"ai\"")
     @TableField("type")
     private String type;
 

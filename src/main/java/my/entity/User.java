@@ -4,13 +4,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * <p>
@@ -18,7 +18,7 @@ import lombok.Setter;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-10
+ * @since 2022-04-30
  */
 @Getter
 @Setter
@@ -39,7 +39,7 @@ public class User implements Serializable {
     private String password;
 
     @TableField("create_time")
-    private Date createTime;
+    private LocalDate createTime;
 
     @TableField("sex")
     private String sex;
@@ -53,16 +53,9 @@ public class User implements Serializable {
     @TableField("user_img")
     private String userImg;
 
+    @ApiModelProperty("用 , 来分割")
     @TableField("like_article_list")
     private String likeArticleList;
 
 
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
-
-    public User() {
-
-    }
 }

@@ -4,7 +4,6 @@ import my.entity.User;
 import my.mapper.UserMapper;
 import my.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**

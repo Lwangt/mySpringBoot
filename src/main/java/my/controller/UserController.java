@@ -1,21 +1,20 @@
 package my.controller;
 
-import com.alibaba.fastjson.*;
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import my.common.utils.AjaxResult;
 import my.common.utils.DESUtils;
 import my.common.utils.TokenUtils;
-import my.vo.LoginVo;
 import my.entity.User;
+import my.vo.LoginVo;
 import my.mapper.UserMapper;
 import my.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 /**
  * <p>
@@ -101,7 +100,7 @@ public class UserController {
             User user = new User();
             user.setName(loginVo.getName());
             user.setPassword(DESUtils.encrypt(loginVo.getPassword()));
-            user.setCreateTime(new Date());
+            user.setCreateTime(LocalDate.now());
             userMapper.insert(user);
             AjaxResult ajax = AjaxResult.success();
             return ajax;

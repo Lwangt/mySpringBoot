@@ -1,7 +1,7 @@
 package my.service;
 
-import my.entity.Comment;
 import com.baomidou.mybatisplus.extension.service.IService;
+import my.entity.Comment;
 
 /**
  * <p>

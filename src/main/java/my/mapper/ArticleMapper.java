@@ -1,10 +1,8 @@
 package my.mapper;
 
-import my.entity.Article;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import my.entity.Article;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * <p>
@@ -12,7 +10,7 @@ import java.util.List;
  * </p>
  *
  * @author lwangt
- * @since 2022-03-10
+ * @since 2022-04-30
  */
 @Mapper
 public interface ArticleMapper extends BaseMapper<Article> {

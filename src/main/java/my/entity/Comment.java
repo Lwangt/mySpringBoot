@@ -4,21 +4,20 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author lwangt
- * @since 2022-04-17
+ * @since 2022-04-30
  */
 @Getter
 @Setter
@@ -41,7 +40,7 @@ public class Comment implements Serializable {
     private String content;
 
     @TableField("create_time")
-    private Date createTime;
+    private LocalDate createTime;
 
     @TableField("avatar")
     private String avatar;

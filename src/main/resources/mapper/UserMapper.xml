@@ -15,9 +15,4 @@
         <result column="like_article_list" property="likeArticleList" />
     </resultMap>
 
-<!--    &lt;!&ndash;public User selectUserByName(String name);/*通过用户名查询用户*/&ndash;&gt;-->
-<!--    <select id="selectUserByName" resultMap="userResult" parameterType="String">-->
-<!--        SELECT * FROM USER WHERE NAME = #{name}-->
-<!--    </select>-->
-
 </mapper>

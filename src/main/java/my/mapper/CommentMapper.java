@@ -1,7 +1,7 @@
 package my.mapper;
 
-import my.entity.Comment;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import my.entity.Comment;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
