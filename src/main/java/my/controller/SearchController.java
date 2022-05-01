@@ -59,11 +59,11 @@ public class SearchController {
 
     }
 
-    @PostMapping("/searchByArticleContent")
-    public AjaxResult searchByArticleContent(@Validated @RequestBody Article article) {
+    @PostMapping("/searchByArticleIntroduction")
+    public AjaxResult searchByArticleIntroduction(@Validated @RequestBody Article article) {
 
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
-        wrapper.like("content", article.getContent());
+        wrapper.like("introduction", article.getIntroduction());
         wrapper.eq(!StringCustomUtils.isNullOrEmpty(article.getType()),"type", article.getType());
         List<Article> list  = articleMapper.selectList(wrapper);
 

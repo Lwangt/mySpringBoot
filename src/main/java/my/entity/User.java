@@ -57,5 +57,7 @@ public class User implements Serializable {
     @TableField("like_article_list")
     private String likeArticleList;
 
+    @TableField("intro")
+    private String intro;
 
 }

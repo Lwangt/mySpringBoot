@@ -13,6 +13,7 @@
         <result column="fan_account" property="fanAccount" />
         <result column="user_img" property="userImg" />
         <result column="like_article_list" property="likeArticleList" />
+        <result column="intro" property="intro" />
     </resultMap>
 
 </mapper>
