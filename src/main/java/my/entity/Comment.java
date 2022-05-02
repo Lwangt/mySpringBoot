@@ -54,5 +54,7 @@ public class Comment implements Serializable {
     @TableField("comment_count")
     private Long commentCount;
 
+    @TableField("to_who")
+    private String toWho;
 
 }

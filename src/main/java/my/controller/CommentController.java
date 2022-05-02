@@ -63,5 +63,18 @@ public class CommentController {
         return ajax;
     }
 
+    @PostMapping("/sendComment")
+    public AjaxResult sendComment(@Validated @RequestBody Comment comment) {
+
+        comment.setCreateTime(LocalDate.now());
+        if(comment.getParentId() == 0) comment.setParentId(null);
+
+       commentMapper.insert(comment);
+        AjaxResult ajax = AjaxResult.success();
+
+
+        return ajax;
+    }
+
 
 }
