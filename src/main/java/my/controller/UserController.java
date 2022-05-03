@@ -2,9 +2,11 @@ package my.controller;
 
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import my.common.utils.AjaxResult;
 import my.common.utils.DESUtils;
 import my.common.utils.TokenUtils;
+import my.entity.Article;
 import my.entity.User;
 import my.vo.LoginVo;
 import my.mapper.UserMapper;
@@ -14,7 +16,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -134,6 +138,20 @@ public class UserController {
 
         AjaxResult ajax = AjaxResult.success();
         ajax.put("likeArticleList",user.getLikeArticleList());
+        return ajax;
+    }
+
+    @PostMapping("/disLikeArticle")
+    public AjaxResult disLikeArticle(@Validated @RequestBody User user) {
+
+
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.eq("id", user.getId());
+        updateWrapper.set("like_article_list", user.getLikeArticleList());
+
+        userMapper.update(null, updateWrapper);
+
+        AjaxResult ajax = AjaxResult.success();
         return ajax;
     }
 

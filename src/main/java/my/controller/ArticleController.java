@@ -1,9 +1,12 @@
 package my.controller;
 
 
+import cn.hutool.json.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import my.common.utils.AjaxResult;
 import my.entity.Article;
+import my.entity.User;
 import my.mapper.ArticleMapper;
 import my.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -61,15 +65,27 @@ public class ArticleController {
         }
     }
 
+    @PostMapping("/getArticleByList")
+    public AjaxResult getArticleByList(@Validated @RequestBody List<Long> list) {
+
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        wrapper.in("article_id", list);
+        List<Article> article  = articleMapper.selectList(wrapper);
+
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("data",article);
+        return ajax;
+    }
+
     @PostMapping("/getArticleListByType")
     public AjaxResult getArticleListByType(@Validated @RequestBody Article article) {
 
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.eq("type", article.getType());
-        List<Article> articletList  = articleMapper.selectList(wrapper);
+        List<Article> articleList  = articleMapper.selectList(wrapper);
 
         AjaxResult ajax = AjaxResult.success();
-        ajax.put("data",articletList);
+        ajax.put("data",articleList);
         return ajax;
     }
 
@@ -100,6 +116,7 @@ public class ArticleController {
         return ajax;
 
     }
+
 
 
 }
