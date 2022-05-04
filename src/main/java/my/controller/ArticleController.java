@@ -53,16 +53,16 @@ public class ArticleController {
     }
 
     @PostMapping("/deleteArticle")
-    public AjaxResult deleteArticle(@RequestBody Map<String, Object> obj) {
+    public AjaxResult deleteArticle(@RequestBody Article article) {
 
-        if(obj.get("authorId")!=obj.get("id")) {
-            AjaxResult ajax = AjaxResult.error("没有权限删除");
-            return ajax;
-        }
-        else {
-            AjaxResult ajax = AjaxResult.success();
-            return ajax;
-        }
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        wrapper.eq("article_id", article.getArticleId());
+        articleMapper.delete(wrapper);
+        System.out.println("删除了文章 articleId = "+ article.getArticleId());
+
+        AjaxResult ajax = AjaxResult.success();
+        return ajax;
+
     }
 
     @PostMapping("/getArticleByList")
@@ -82,6 +82,18 @@ public class ArticleController {
 
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.eq("type", article.getType());
+        List<Article> articleList  = articleMapper.selectList(wrapper);
+
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("data",articleList);
+        return ajax;
+    }
+
+    @PostMapping("/getArticleListByAuthorId")
+    public AjaxResult getArticleListByAuthorId(@Validated @RequestBody User user) {
+
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        wrapper.eq("author_id", user.getId());
         List<Article> articleList  = articleMapper.selectList(wrapper);
 
         AjaxResult ajax = AjaxResult.success();

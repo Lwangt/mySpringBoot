@@ -127,6 +127,15 @@ public class UserController {
         return ajax;
     }
 
+    @PostMapping("/getUserById")
+    public AjaxResult getUserById(@Validated @RequestBody LoginVo loginVo) {
+
+        User user = userMapper.selectById(loginVo.getId());
+        AjaxResult ajax = AjaxResult.success();
+        ajax.put("data",user);
+        return ajax;
+    }
+
     @PostMapping("/getUserLikeArticleListById")
     public AjaxResult getUserLikeArticleListById(@Validated @RequestBody LoginVo loginVo) {
 
