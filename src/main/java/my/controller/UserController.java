@@ -164,4 +164,23 @@ public class UserController {
         return ajax;
     }
 
+    @PostMapping("/editUser")
+    public AjaxResult editUser(@Validated @RequestBody User user) {
+
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.eq("id", user.getId());
+        updateWrapper.set("name", user.getName());
+        updateWrapper.set("intro", user.getIntro());
+        updateWrapper.set("sex", user.getSex());
+        System.out.println("=1=  "+ user.getPassword());
+        System.out.println("=2=  "+ DESUtils.encrypt(user.getPassword()));
+        updateWrapper.set("password", DESUtils.encrypt(user.getPassword()));
+
+
+        userMapper.update(null, updateWrapper);
+
+        AjaxResult ajax = AjaxResult.success();
+        return ajax;
+    }
+
 }
