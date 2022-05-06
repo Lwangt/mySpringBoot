@@ -172,14 +172,15 @@ public class UserController {
         updateWrapper.set("name", user.getName());
         updateWrapper.set("intro", user.getIntro());
         updateWrapper.set("sex", user.getSex());
-        System.out.println("=1=  "+ user.getPassword());
-        System.out.println("=2=  "+ DESUtils.encrypt(user.getPassword()));
-        updateWrapper.set("password", DESUtils.encrypt(user.getPassword()));
-
-
+//        System.out.println("pwd"+user.getPassword());
+        if(user.getPassword()!=null) updateWrapper.set("password", DESUtils.encrypt(user.getPassword()));
         userMapper.update(null, updateWrapper);
 
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("id", user.getId());
+        User user2  = userMapper.selectOne(wrapper);
         AjaxResult ajax = AjaxResult.success();
+        ajax.put("userMessage",user2);
         return ajax;
     }
 
