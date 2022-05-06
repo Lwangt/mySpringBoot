@@ -172,7 +172,8 @@ public class UserController {
         updateWrapper.set("name", user.getName());
         updateWrapper.set("intro", user.getIntro());
         updateWrapper.set("sex", user.getSex());
-//        System.out.println("pwd"+user.getPassword());
+//                System.out.println("head"+user.getUserImg());
+        if(user.getUserImg()!=null) updateWrapper.set("user_img", user.getUserImg());
         if(user.getPassword()!=null) updateWrapper.set("password", DESUtils.encrypt(user.getPassword()));
         userMapper.update(null, updateWrapper);
 
